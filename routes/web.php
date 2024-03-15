@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Support\Facades\Log;
+use App\Http\Controllers\RecommendationController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -29,10 +31,14 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 
-    Route::get('/recommendation', function () {
+    Route::get('/recommendation', [RecommendationController::class, 'getAll'], function () {
         Log::info('recomm');
         return view('dashboard');
     })->name('recommendation');
+    // Route::get('/recommendation', function () {
+    //     Log::info('recomm');
+    //     return view('dashboard');
+    // })->name('recommendation');
 });
 
 Route::get('/email/verify', function () {
